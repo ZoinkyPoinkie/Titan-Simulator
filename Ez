@@ -1,0 +1,103 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Titan Simulator", "Synapse")
+local Tab = Window:NewTab("All Scripts")
+local Section = Tab:NewSection("Hi Daddy Lets Have Sex :)")
+Section:NewButton("Anti AFK", "ez", function()
+    print("Anti Afk On")
+
+local vu = game:GetService("VirtualUser")
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+   vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+   wait(1)
+   vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
+
+end)
+Section:NewToggle("Auto Equip Punch", "ez", function(state)
+    if state then
+        _G.AutoEquip = true
+while _G.AutoEquip == true do
+    wait()
+    for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+        if v.name == "Punch" then
+            v.Parent = game.Players.LocalPlayer.Character
+        end
+    end
+end
+    else
+        _G.AutoEquip = false
+while _G.AutoEquip == true do
+    wait()
+    for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+        if v.name == "Punch" then
+            v.Parent = game.Players.LocalPlayer.Character
+        end
+    end
+end
+    end
+end)
+Section:NewToggle("Auto Punch", "ez", function(state)
+    if state then
+        _G.AutoClick = true
+while _G.AutoClick == true do
+wait()
+local user = game:GetService("VirtualUser")
+local player = game.Players.LocalPlayer
+local mouse = player:GetMouse()
+user:CaptureController()
+
+user:ClickButton1(Vector2.new(mouse.x,mouse.y))
+end
+    else
+        _G.AutoClick = false
+while _G.AutoClick == true do
+wait()
+local user = game:GetService("VirtualUser")
+local player = game.Players.LocalPlayer
+local mouse = player:GetMouse()
+user:CaptureController()
+
+user:ClickButton1(Vector2.new(mouse.x,mouse.y))
+end
+    end
+end)
+Section:NewToggle("Auto Rebirth", "ez", function(state)
+    if state then
+        _G.AutoRebirth = true
+while _G.AutoRebirth == true do
+    wait(0.1)
+    game:GetService("ReplicatedStorage").RemoteEventContainer.Rebirth:FireServer()
+    end
+    else
+        _G.AutoRebirth = false
+while _G.AutoRebirth == true do
+    wait(0.1)
+    game:GetService("ReplicatedStorage").RemoteEventContainer.Rebirth:FireServer()
+    end
+    end
+end)
+Section:NewToggle("Auto Orb", "ez", function(state)
+    if state then
+        _G.AutoOrb = true
+while _G.AutoOrb == true do
+wait(0.1)
+for i,v in pairs(game.Workspace:GetChildren()) do
+if v.Name == "Drop" then
+v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+else
+end
+end
+end
+    else
+        _G.AutoOrb = false
+while _G.AutoOrb == true do
+wait(0.1)
+for i,v in pairs(game.Workspace:GetChildren()) do
+if v.Name == "Drop" then
+v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+else
+end
+end
+end
+    end
+end)
